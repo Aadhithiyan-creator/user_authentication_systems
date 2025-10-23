@@ -187,8 +187,21 @@ const AdminDashboard = () => {
     if (!confirm("Are you sure you want to remove this user?")) return;
 
     try {
-      const { error } = await supabase.auth.admin.deleteUser(userId);
-      if (error) throw error;
+      // Delete user roles first
+      const { error: rolesError } = await supabase
+        .from("user_roles")
+        .delete()
+        .eq("user_id", userId);
+      
+      if (rolesError) throw rolesError;
+
+      // Delete profile (this will cascade due to foreign key)
+      const { error: profileError } = await supabase
+        .from("profiles")
+        .delete()
+        .eq("id", userId);
+      
+      if (profileError) throw profileError;
 
       toast({
         title: "Success",
