@@ -78,32 +78,8 @@ const Index = () => {
               </Button>
             </>
           )}
-        </div>
-
-        <div className="pt-8 border-t border-border">
-          <h2 className="text-xl font-semibold mb-4">Features</h2>
-          <div className="grid md:grid-cols-3 gap-6 text-left">
-            <div className="space-y-2">
-              <h3 className="font-medium">Secure Authentication</h3>
-              <p className="text-sm text-muted-foreground">
-                Password hashing and session management with Supabase Auth
-              </p>
-            </div>
-            <div className="space-y-2">
-              <h3 className="font-medium">User Profiles</h3>
-              <p className="text-sm text-muted-foreground">
-                Manage your personal information securely
-              </p>
-            </div>
-            <div className="space-y-2">
-              <h3 className="font-medium">Admin Dashboard</h3>
-              <p className="text-sm text-muted-foreground">
-                Administrative tools for user management
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
+    </div>
     </div>
   );
 };

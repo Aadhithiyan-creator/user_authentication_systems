@@ -5,13 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
 import { User } from "@supabase/supabase-js";
-import { LogOut, Shield } from "lucide-react";
+import { LogOut } from "lucide-react";
 
 const Profile = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
   const [fullName, setFullName] = useState<string>("");
-  const [isAdmin, setIsAdmin] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -36,15 +35,6 @@ const Profile = () => {
         setFullName(profile.full_name);
       }
 
-      // Check if user is admin
-      const { data: roles } = await supabase
-        .from("user_roles")
-        .select("role")
-        .eq("user_id", session.user.id)
-        .eq("role", "admin")
-        .maybeSingle();
-
-      setIsAdmin(!!roles);
       setIsLoading(false);
     };
 
@@ -105,35 +95,17 @@ const Profile = () => {
               <p className="text-sm font-medium text-muted-foreground">Email Address</p>
               <p className="text-lg font-semibold">{user?.email}</p>
             </div>
-            {isAdmin && (
-              <div className="flex items-center gap-2 text-primary">
-                <Shield className="w-5 h-5" />
-                <p className="font-medium">Administrator</p>
-              </div>
-            )}
           </CardContent>
         </Card>
 
-        <div className="flex gap-4">
-          {isAdmin && (
-            <Button
-              onClick={() => navigate("/admin")}
-              variant="secondary"
-              className="flex-1 rounded-lg"
-            >
-              <Shield className="w-4 h-4 mr-2" />
-              Admin Dashboard
-            </Button>
-          )}
-          <Button
-            onClick={handleLogout}
-            variant="destructive"
-            className="flex-1 rounded-lg"
-          >
-            <LogOut className="w-4 h-4 mr-2" />
-            Logout
-          </Button>
-        </div>
+        <Button
+          onClick={handleLogout}
+          variant="destructive"
+          className="w-full rounded-lg"
+        >
+          <LogOut className="w-4 h-4 mr-2" />
+          Logout
+        </Button>
       </div>
     </div>
   );
