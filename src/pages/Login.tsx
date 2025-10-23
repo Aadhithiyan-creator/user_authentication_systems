@@ -132,11 +132,18 @@ const Login = () => {
             </Button>
           </form>
 
-          <div className="mt-4 text-center text-sm">
-            Don't have an account?{" "}
-            <Link to="/register" className="text-primary hover:underline font-medium">
-              Register
-            </Link>
+          <div className="mt-4 space-y-2">
+            <div className="text-center text-sm">
+              Don't have an account?{" "}
+              <Link to="/register" className="text-primary hover:underline font-medium">
+                Register
+              </Link>
+            </div>
+            <div className="text-center text-sm">
+              <Link to="/" className="text-muted-foreground hover:text-primary hover:underline">
+                Back to Home
+              </Link>
+            </div>
           </div>
         </CardContent>
       </Card>
