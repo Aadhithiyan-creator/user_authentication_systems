@@ -34,52 +34,52 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
-      <div className="max-w-2xl mx-auto text-center space-y-8">
-        <div className="space-y-4">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-            <Shield className="w-8 h-8 text-primary" />
+    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-background via-blue-50 to-cyan-50 dark:from-background dark:via-blue-950 dark:to-cyan-950">
+      <div className="max-w-3xl mx-auto text-center space-y-12">
+        <div className="space-y-6">
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-primary to-secondary shadow-lg mb-4 animate-fade-in">
+            <Shield className="w-10 h-10 text-white" />
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground">
+          <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent animate-fade-in">
             User Authentication System
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto">
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in">
             A secure platform for user registration and login built with Supabase and modern web technologies
           </p>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-scale-in">
           {isAuthenticated ? (
             <Button
               onClick={() => navigate("/profile")}
               size="lg"
-              className="rounded-lg w-full sm:w-auto"
+              className="group relative w-full sm:w-64 h-14 rounded-xl bg-gradient-to-r from-primary to-secondary hover:shadow-[0_0_30px_rgba(37,99,235,0.5)] transition-all duration-300 hover:scale-105 active:scale-95"
             >
               Go to Profile
             </Button>
           ) : (
             <>
               <Button
-                onClick={() => navigate("/register")}
+                onClick={() => navigate("/login")}
                 size="lg"
-                className="rounded-lg w-full sm:w-auto"
+                className="group relative w-full sm:w-64 h-14 rounded-xl bg-gradient-to-r from-primary to-secondary hover:shadow-[0_0_30px_rgba(37,99,235,0.5)] transition-all duration-300 hover:scale-105 active:scale-95"
               >
-                <UserPlus className="w-4 h-4 mr-2" />
-                Register
+                <UserPlus className="w-5 h-5 mr-2" />
+                User Login / Register
               </Button>
               <Button
-                onClick={() => navigate("/login")}
-                variant="outline"
+                onClick={() => navigate("/admin/login")}
                 size="lg"
-                className="rounded-lg w-full sm:w-auto"
+                variant="outline"
+                className="group relative w-full sm:w-64 h-14 rounded-xl border-2 border-primary/50 bg-white/50 dark:bg-card/50 backdrop-blur-sm hover:bg-primary/10 hover:border-primary hover:shadow-[0_0_30px_rgba(20,184,166,0.4)] transition-all duration-300 hover:scale-105 active:scale-95"
               >
-                <LogIn className="w-4 h-4 mr-2" />
-                Login
+                <Shield className="w-5 h-5 mr-2" />
+                Admin Login
               </Button>
             </>
           )}
+        </div>
       </div>
-    </div>
     </div>
   );
 };
